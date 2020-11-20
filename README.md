@@ -96,8 +96,75 @@ var hex = '15';
 var dec = parseInt(hex, 16);
 console.log(dec); // 21
 ```
-  
-  
+
+### 복사(slice)
+slice를 통해 사용자가 원하는 부분만을 복사하여 저장할 수 있습니다.
+slice(start[, end])
+ - 문자열, 배열에 사용 가능합니다.
+ - 숫자가 하나만 입력된 경우 그 숫자를 기준으로 마지막까지 복사됩니다.
+ - start에 undefined 또는 ''을 넣을 경우 0번 부터 복사합니다.
+ - 음수를 넣을 경우 뒤에서 부터의 길이를 나타냅니다.
+```
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    
+console.log(arr.slice(3, 5)); //[4, 5]
+console.log(arr.slice(undefined, 5)); //[1, 2, 3, 4, 5]
+console.log(arr.slice(-3)); //[8, 9, 10]
+console.log(arr.slice(-3, 9)); //[8, 9]
+console.log(arr.slice(10)); //[]
+console.log(arr.slice(4)); //[5, 6, 7, 8, 9, 10]
+console.log(arr.slice(undefined)); //[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log(arr.slice(5, -4)); //[6]
+console.log(arr.slice(2, 15)); //[3, 4, 5, 6, 7, 8, 9, 10]
+
+//활용
+var arr = [1,2,3];
+var temp1 = arr
+var temp2 = arr.slice('');
+
+temp1.push(4);
+temp2.push(5);
+    
+console.log(arr); //[1,2,3,4]
+console.log(temp1); //[1,2,3,4]
+console.log(temp2); //[1,2,3,5]
+```
+### 변경(splice / replace)
+splice(start, deleteCount, item1, item2....)
+- 배열의 있는 값을 수정할 때 사용
+- start 수정할 인덱스의 시작 위치
+- deleteCount는 start를 기준으로 삭제할 개수, 0일 경우 추가만 이루어진다.
+- item은 추가될 내용들을 의미합니다.
+```
+var arr = [1,2,3,4]
+arr.splice(2,0,5);
+console.log(arr); //[1,2,5,3,4]
+
+var arr = [1,2,3,4]
+arr.splice(2,0,5,6);
+console.log(arr); //[1,2,5,6,3,4]
+
+var arr = [1,2,3,4]
+arr.splice(2,1);
+console.log(arr); //[1,2,4]
+
+var arr = [1,2,3,4]
+arr.splice(2,1,5);
+console.log(arr); //[1,2,5,4]
+
+var arr = [1,2,3,4]
+arr.splice(2,1,5,6);
+console.log(arr); //[1,2,5,6,4]
+```
+replace('변경할 내용', '변경될 내용')
+- 변경할 내용에 일반적으로 입력할 경우 가장 앞에 있는 부분만 변경됩니다. 모든 내용을 변경하기 위해서는 정규식을 사용합니다
+```
+var str = 'assd';
+    
+console.log(str.replace('s', '')); //asd
+console.log(str.replace('s', 't')); //atsd
+console.log(str.replace(/s/gi, '')); //ad
+```
 ### 앞으로 정리될 내용
 reduce
-slice, splice
+정규식
