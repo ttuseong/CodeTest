@@ -1,0 +1,5 @@
+SELECT COUNT(*) AS USERS
+    FROM USER_INFO
+    WHERE YEAR(JOINED) = 2021
+        AND 20 <= age
+        AND age <= 29
